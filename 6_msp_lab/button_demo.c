@@ -21,11 +21,13 @@ update_text(void)
   u_int off_color = (blue << 11)                | red;
   
   if (switch1_state == down) {
-    drawChar5x7(text_col, text_row, 'O',on_color, backgroundColor);
-    drawRectOutline(0, 0, screenHeight, screenWidth, COLOR_GREEN);
+    // drawChar5x7(text_col, text_row, 'O',on_color, backgroundColor);
+    drawRectOutline(0, 0, screenWidth, screenHeight, COLOR_GREEN);
+    draw_diamond(96, 96, 8, COLOR_ORANGE);
   } else {
-    drawChar5x7(text_col, text_row, '-',off_color, backgroundColor);
-    drawRectOutline(0, 0, screenHeight, screenWidth, backgroundColor);
+    // drawChar5x7(text_col, text_row, '-',off_color, backgroundColor);
+    drawRectOutline(0, 0, screenWidth, screenHeight, backgroundColor);
+    draw_diamond(96, 96, 8, backgroundColor);
   }
   if (switch2_state == down) {
     drawChar5x7(text_col + char_width, text_row, 'K',on_color, backgroundColor);

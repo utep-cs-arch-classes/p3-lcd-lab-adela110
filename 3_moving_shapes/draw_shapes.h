@@ -20,6 +20,15 @@ typedef struct cir_st {
   int r;
 } circle;
 
+typedef struct border_st
+{
+  u_char x_origin;
+  u_char y_origin;
+  u_char width;
+  u_char height;
+  u_int color;
+}
+
 extern u_int background_color;
 
 /* initializes shape positions */

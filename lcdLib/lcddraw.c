@@ -115,3 +115,62 @@ void drawRectOutline(u_char colMin, u_char rowMin, u_char width, u_char height,
   fillRectangle(colMin + width, rowMin, 1, height, colorBGR);
 }
 
+void drawHorizontalLine(u_int x_start, u_int x_end, u_int y, u_int color)
+{
+  u_int length = x_end - x_start;
+
+  lcd_setArea(x_start, y, x_end, y);
+
+  for(int i = 0 ; i <= length ; i++)
+  {
+    lcd_writeColor(color);
+  }
+}
+
+void draw_diamond(u_int x, u_int y, u_int width, u_int color)
+{
+  u_int x1 = x - width;
+  u_int x2 = x + width;
+
+  u_int y_top = y - 1;
+  u_int y_bot = y + 1;
+
+  // Draw Mid Line
+  drawHorizontalLine(x1, x2, y_top, color);
+  drawHorizontalLine(x1, x2, y, color);
+  drawHorizontalLine(x1, x2, y_bot, color);
+
+  // Draw Top Diamond
+  y_top -= 1;
+  x1 += 1;
+  x2 -= 1;
+  while (x2 - x1 >= 1)
+  {
+    drawHorizontalLine(x1, x2, y_top, color);
+    y_top -= 1;
+    drawHorizontalLine(x1, x2, y_top, color);
+    y_top -= 1;
+
+    x1 += 1;
+    x2 -= 1;
+  }
+  drawHorizontalLine(x1, x2, y_top, color);
+
+  // Draw Bot Diamond
+  y_bot += 1;
+  x1 = x - width;
+  x2 = x + width;
+  while (x2 - x1 >= 1)
+  {
+    drawHorizontalLine(x1, x2, y_bot, color);
+    y_bot += 1;
+    drawHorizontalLine(x1, x2, y_bot, color);
+    y_bot += 1;
+
+    x1 += 1;
+    x2 -= 1;
+  }
+  drawHorizontalLine(x1, x2, y_bot, color);
+  
+}
+

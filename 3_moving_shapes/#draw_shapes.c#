@@ -59,7 +59,13 @@ draw_moving_shapes(void)
 }
 
 void
-draw_border(u_int color)
+draw_border(u_char x, u_char y, u_char width, u_char height, u_int color)
+{
+  drawRectOutline(x, y, width, height, color);
+}
+
+void
+move_border()
 
 
 void

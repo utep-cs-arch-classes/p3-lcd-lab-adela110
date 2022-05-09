@@ -22,10 +22,12 @@ update_text(void)
   
   if (switch1_state == down) {
     drawChar5x7(text_col, text_row, 'O',on_color, backgroundColor);
-    drawRectOutline(0, 0, screenHeight, screenWidth, COLOR_GREEN);
+    drawRectOutline(0, 0, 64, 64, COLOR_GREEN);
+    draw_diamond(96, 96, 8, COLOR_ORANGE);
   } else {
     drawChar5x7(text_col, text_row, '-',off_color, backgroundColor);
-    drawRectOutline(0, 0, screenHeight, screenWidth, backgroundColor);
+    drawRectOutline(0, 0, 64, 64, backgroundColor);
+    draw_diamond(96, 96, 8, backgroundColor);
   }
   if (switch2_state == down) {
     drawChar5x7(text_col + char_width, text_row, 'K',on_color, backgroundColor);
