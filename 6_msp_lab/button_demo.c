@@ -4,6 +4,7 @@
 #include "lcddraw.h"
 #include "switches.h"
 #include "led.h"
+#include "buzzer.h"
 
 // WARNING: LCD DISPLAY USES P1.0.  Do not touch!!! 
 
@@ -22,19 +23,62 @@ update_text(void)
   
   if (switch1_state == down) {
     // drawChar5x7(text_col, text_row, 'O',on_color, backgroundColor);
-    drawRectOutline(0, 0, screenWidth, screenHeight, COLOR_GREEN);
-    draw_diamond(96, 96, 8, COLOR_ORANGE);
+    drawRectOutline(0, 0, 128, 160, COLOR_GREEN);
+
+    // Draw Diamonds
+    draw_diamond(8, 120, 4, COLOR_ORANGE);
+    draw_diamond(40, 120, 8, COLOR_GREEN);
+    draw_diamond(78, 120, 12, COLOR_RED);
+
+    drawString5x7(8, 60, "Diamonds\0", on_color, backgroundColor);
+    
+    buzzer_set_period(C3);
   } else {
     // drawChar5x7(text_col, text_row, '-',off_color, backgroundColor);
-    drawRectOutline(0, 0, screenWidth, screenHeight, backgroundColor);
-    draw_diamond(96, 96, 8, backgroundColor);
+    drawRectOutline(0, 0, 128, 160, backgroundColor);
+
+    // Draw Diamonds
+    draw_diamond(8, 120, 4, backgroundColor);
+    draw_diamond(40, 120, 8, backgroundColor);
+    draw_diamond(78, 120, 12, backgroundColor);
+
+    drawString5x7(8, 60, "Diamonds\0", off_color, backgroundColor);
+    
+    buzzer_set_period(0);
   }
   if (switch2_state == down) {
-    drawChar5x7(text_col + char_width, text_row, 'K',on_color, backgroundColor);
-  } else {
-    drawChar5x7(text_col + char_width, text_row, '-',off_color, backgroundColor);
-  }
+    // drawChar5x7(text_col + char_width, text_row, 'K',on_color, backgroundColor);
+    drawString5x7(8, 72, "Hearts\0", on_color, backgroundColor);
 
+    // Draw Hearts
+    u_int colors[] = {COLOR_ORANGE, COLOR_YELLOW, COLOR_GREEN, COLOR_RED, COLOR_CYAN, COLOR_PURPLE, COLOR_WHITE};
+
+    u_int x_pos = 100;
+    u_int y_pos = 24;
+
+    for (int i = 0 ; i < 7 ; i++)
+    {
+      draw_undertale_heart(x_pos, y_pos, colors[i]);
+      y_pos += 16;
+    }
+    
+    buzzer_set_period(E3);
+  } else {
+    // drawChar5x7(text_col + char_width, text_row, '-',off_color, backgroundColor);
+    drawString5x7(8, 72, "Hearts\0", off_color, backgroundColor);
+
+    u_int x_pos = 100;
+    u_int y_pos = 24;
+
+    for (int i = 0 ; i < 7 ; i++)
+    {
+      draw_undertale_heart(x_pos, y_pos, backgroundColor);
+      y_pos += 16;
+    }
+
+    
+    buzzer_set_period(0);
+  }
 }
 
 void main(void)
@@ -44,6 +88,8 @@ void main(void)
   led_init();
   switch_p2_init();
   lcd_init();
+
+  buzzer_init();
   
   //enableWDTInterrupts();      /**< enable periodic interrupt */
   or_sr(0x8);	              /**< GIE (enable interrupts) */
