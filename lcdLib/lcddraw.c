@@ -174,3 +174,38 @@ void draw_diamond(u_int x, u_int y, u_int width, u_int color)
   
 }
 
+void
+draw_undertale_heart(u_int x, u_int y, u_int color)
+{
+  drawHorizontalLine(x, x + 3, y, color);
+  drawHorizontalLine(x, x + 3, y - 1, color);
+
+  drawHorizontalLine(x - 2, x + 5, y - 2, color);
+  drawHorizontalLine(x - 2, x + 5, y - 3, color);
+
+  drawHorizontalLine(x - 4, x + 7, y - 4, color);
+  drawHorizontalLine(x - 4, x + 7, y - 5, color);
+
+  drawHorizontalLine(x - 6, x + 9, y - 6, color);
+  drawHorizontalLine(x - 6, x + 9, y - 7, color);
+
+  drawHorizontalLine(x - 6, x + 9, y - 8, color);
+  drawHorizontalLine(x - 6, x + 9, y - 9, color);
+
+  drawHorizontalLine(x - 6, x + 9, y - 10, color);
+  drawHorizontalLine(x - 6, x + 9, y - 11, color);
+
+  // Heart top
+  drawHorizontalLine(x - 6, x, y - 12, color);
+  drawHorizontalLine(x + 3, x + 9, y - 12, color);
+
+  drawHorizontalLine(x - 6, x, y - 13, color);
+  drawHorizontalLine(x + 3, x + 9, y - 13, color);
+
+  drawHorizontalLine(x - 5, x - 1, y - 14, color);
+  drawHorizontalLine(x + 4, x + 8, y - 14, color);
+
+  drawHorizontalLine(x - 4, x - 3, y - 15, color);
+  drawHorizontalLine(x + 6, x + 7, y - 15, color);
+}
+
