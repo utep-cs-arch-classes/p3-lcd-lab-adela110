@@ -20,10 +20,15 @@ update_text(void)
   static u_char blue = 31, green = 16, red = 31;
   u_int on_color  =                (green << 5) | red;
   u_int off_color = (blue << 11)                | red;
+
+  drawString5x7(4, 16, "LcD DeMO\0", COLOR_WHITE, backgroundColor);
+  drawString5x7(4, 24, "[NOT TIGER!]\0", COLOR_WHITE, backgroundColor);
+  drawString5x7(4, 32, "FUN! PLAY!\0", COLOR_WHITE, backgroundColor);
+  drawString5x7(4, 40, "GOOD TIME!\0", COLOR_WHITE, backgroundColor);
   
   if (switch1_state == down) {
     // drawChar5x7(text_col, text_row, 'O',on_color, backgroundColor);
-    drawRectOutline(0, 0, 128, 160, COLOR_GREEN);
+    // drawRectOutline(0, 0, 128, 160, COLOR_GREEN);
 
     // Draw Diamonds
     draw_diamond(8, 120, 4, COLOR_ORANGE);
@@ -35,7 +40,7 @@ update_text(void)
     buzzer_set_period(C3);
   } else {
     // drawChar5x7(text_col, text_row, '-',off_color, backgroundColor);
-    drawRectOutline(0, 0, 128, 160, backgroundColor);
+    // drawRectOutline(0, 0, 128, 160, backgroundColor);
 
     // Draw Diamonds
     draw_diamond(8, 120, 4, backgroundColor);
@@ -79,6 +84,17 @@ update_text(void)
     
     buzzer_set_period(0);
   }
+  /*
+  if (switch3_state == down)
+  {
+    drawString5x7(8, 84, "Switch 3!\0", on_color, backgroundColor);
+  } else {
+    drawString5x7(8, 84, "Switch 3!\0", off_color, backgroundColor);
+  }
+  */
+
+  drawRectOutline(0, 0, 120, 150, COLOR_GREEN);
+  
 }
 
 void main(void)

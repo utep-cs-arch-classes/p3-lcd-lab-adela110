@@ -75,6 +75,13 @@ void drawHorizontalLine(u_int x_start, u_int x_end, u_int y, u_int color);
  */
 void draw_diamond(u_int x, u_int y, u_int width, u_int color);
 
+/** Draw Undertale Heart
+ *
+ *  This draws a heart from the RPG Undertale
+ *
+ */
+void draw_undertale_heart(u_int x, u_int y, u_int color);
+
 #endif // included
 
 
